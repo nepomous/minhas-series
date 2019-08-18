@@ -14,7 +14,7 @@ const Generos = () => {
 }
 
 function App() {
-  //A tag Header virou um componente do trecho acima
+  
   return (
     <Router>
       <div >
