@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios' //axios puxa informaçoes do servidor (apis e etc)
 import { Redirect } from 'react-router-dom'
+//test
 
 const EditarGenero = ({match}) => {
     const [name, setName] = useState('')
