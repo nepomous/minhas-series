@@ -2,15 +2,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios' //axios puxa informaçoes do servidor (apis e etc)
 import { Redirect } from 'react-router-dom'
 
-const NovoGenero = () => {
+const EditarGenero = ({match}) => {
     const [name, setName] = useState('')
     const [success, setSuccess] = useState(false)
+
+    useEffect(() => {
+        axios
+            .get('/api/genres/' + match.params.id)
+            .then(res => {
+                setName(res.data.name)
+            }, [match.params.id])
+    })
+
     const onChange = evt => {
         setName(evt.target.value)
     }
     const save = () => {
         axios
-            .post('/api/genres',{
+            .put('/api/genres/' + match.params.id,{
                 name
             })
             .then(res => {
@@ -24,7 +33,7 @@ const NovoGenero = () => {
 
     return (
         <div className='container'>
-            <h1>Novo Gênero</h1>
+            <h1>Editar Genero</h1>
             <form>
                 <div className='form-group'>
                 <label htmlFor='name'>nome do Genero</label>
@@ -36,5 +45,5 @@ const NovoGenero = () => {
     ) 
   }
 
-  //se eu quiser usar este recurso externamente, preciso dar export
-export default NovoGenero
+//se eu quiser usar este recurso externamente, preciso dar export
+export default EditarGenero
