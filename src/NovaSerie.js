@@ -2,25 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios' //axios puxa informaçoes do servidor (apis e etc)
 import { Redirect } from 'react-router-dom'
 
-
-const EditarGenero = ({match}) => {
+const NovaSerie = () => {
     const [name, setName] = useState('')
     const [success, setSuccess] = useState(false)
-
-    useEffect(() => {
-        axios
-            .get('/api/genres/' + match.params.id)
-            .then(res => {
-                setName(res.data.name)
-            })
-    }, [match.params.id])
-
     const onChange = evt => {
         setName(evt.target.value)
     }
     const save = () => {
         axios
-            .put('/api/genres/' + match.params.id,{
+            .post('/api/series',{
                 name
             })
             .then(res => {
@@ -29,16 +19,16 @@ const EditarGenero = ({match}) => {
     }
 
     if(success) {
-        return <Redirect to='/generos' />
+        return <Redirect to='/series' />
     }
 
     return (
         <div className='container'>
-            <h1>Editar Genero</h1>
+            <h1>Nova Série</h1>
             <form>
                 <div className='form-group'>
-                <label htmlFor='name'>nome do Genero</label>
-                <input type='text' value={name} onChange={onChange} className='form-control' id='name' placeholder='Nome do Genero'/>                
+                <label htmlFor='name'>Nome da Série</label>
+                <input type='text' value={name} onChange={onChange} className='form-control' id='name' placeholder='Nome da Série'/>                
             </div>
             <button type='button' onClick={save} className='btn btn-primary'>Salvar</button>
             </form>
@@ -46,5 +36,5 @@ const EditarGenero = ({match}) => {
     ) 
   }
 
-//se eu quiser usar este recurso externamente, preciso dar export
-export default EditarGenero
+  //se eu quiser usar este recurso externamente, preciso dar export
+export default NovaSerie
