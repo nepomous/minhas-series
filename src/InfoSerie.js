@@ -6,7 +6,7 @@ import { Badge } from 'reactstrap'
 const InfoSerie = ({ match }) => {
     const [form, setForm] = useState({})
     const [success, setSuccess] = useState(false)
-    const [mode, setMode] = useState('INFO')
+    const [mode, setMode] = useState('EDIT')
     const [genres, setGenres] = useState([])
 
     const [data, setData] = useState({})
@@ -93,7 +93,14 @@ const InfoSerie = ({ match }) => {
                     </div>
                     <div className='form-group'>
                         <label htmlFor='name'>Comentários</label>
-                        <input type='text' value={form.comments} onChange={onChange('comments')} className='form-control' id='name' placeholder='Nome da Série'/>                
+                        <input type='text' value={form.comments} onChange={onChange('comments')} className='form-control' id='name' placeholder='Nome da Série'/>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
                     </div>
                     <button type='button' onClick={save} className='btn btn-primary'>Salvar</button>
                 </form>
